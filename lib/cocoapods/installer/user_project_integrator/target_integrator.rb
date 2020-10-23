@@ -271,7 +271,7 @@ module Pod
           #
           # @return [PBXShellScriptBuildPhase] The existing or newly created shell script build phase.
           #
-          def create_or_update_shell_script_build_phase(native_target, script_phase_name, show_env_vars_in_log = '0')
+          def create_or_update_shell_script_build_phase(native_target, script_phase_name, show_env_vars_in_log = '1')
             build_phases = native_target.build_phases.grep(Xcodeproj::Project::Object::PBXShellScriptBuildPhase)
             build_phases.find { |phase| phase.name && phase.name.end_with?(script_phase_name) }.tap { |p| p.name = script_phase_name if p } ||
               native_target.project.new(Xcodeproj::Project::Object::PBXShellScriptBuildPhase).tap do |phase|
